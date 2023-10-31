@@ -1,0 +1,26 @@
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 0;
+    max-width: 100%;
+}
+
+.socialLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.socialLink {
+    font-size: 22px;
+    color: var(--dark-color);
+    transition: 0.3s ease-in-out;
+}
+
+.socialLink:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}

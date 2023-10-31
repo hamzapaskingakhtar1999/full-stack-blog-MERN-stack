@@ -1,0 +1,39 @@
+.sidebarBlogs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebarBlog {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.sidebarBlogsHeading {
+    padding: 10px 30px;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.sidebarLeft {
+    flex: 1;
+}
+
+.sidebarRight {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 3;
+}
+
+
+.sidebarImage {
+    width: 100%;
+    border-radius: 50px;
+}

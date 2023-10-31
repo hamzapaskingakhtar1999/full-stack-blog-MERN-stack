@@ -1,0 +1,169 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+
+/* Left */
+.allPost {
+    flex: 3;
+}
+
+.posts {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    padding: 30px 30px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.post {
+    flex-direction: column;
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.postImageContainer {
+    height: 15rem;
+}
+.postTexts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.userDetails {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.postImage {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+.blogDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+.name,.date {
+    color: gray;
+}
+
+/* Right */
+.sidebar {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebarItem {
+    border: 1px solid lightgray;
+    padding: 20px 30px;
+    border-radius: 20px;
+}
+
+.allPostTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.allPostTitle {
+    font-size: 32px;
+   /*  color:var(--dark-color) */
+   color:var(--dark-color);
+}
+
+.searchButton {
+    font-size: 32px;
+}
+
+.searchButton:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+    gap: 30px;
+    height: 80px;
+}
+
+.all,.technology,.food,.travel {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+
+}
+
+.all {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(255, 0, 81, 0.5)), url("https://images04.nicepage.com/feature/583347/blog-category.jpg");
+    background-size: cover;
+
+}
+
+.technology {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(255, 0, 81, 0.5)), url("https://imageio.forbes.com/specials-images/imageserve/61d52d4e3a76ed81ac034ea8/The-10-Tech-Trends-That-Will-Transform-Our-World/960x0.jpg?height=399&width=711&fit=bounds");
+    background-size: cover;
+}
+
+.food {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(255, 0, 81, 0.5)), url("https://www.cnet.com/a/img/resize/36e8e8fe542ad9af413eb03f3fbd1d0e2322f0b2/hub/2023/02/03/afedd3ee-671d-4189-bf39-4f312248fb27/gettyimages-1042132904.jpg?auto=webp&fit=crop&height=1200&width=1200");
+    background-size: cover;
+}
+
+.travel {
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(255, 0, 81, 0.5)), url("https://www.fluentu.com/blog/travel/wp-content/uploads/sites/37/2018/07/travel-around-the-world-cost-e1535307163370.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.all,.technology,.food,.travel:hover {
+    cursor: pointer;
+}
+
+.categoryText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    width: 100%;
+}
+
+.postAmount {
+    padding: 5px 10px;
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+
+}
+
+/* Media Queries */
+
+@media screen and (max-width:768px) {
+    .post {
+        width: 100%;
+    }
+}

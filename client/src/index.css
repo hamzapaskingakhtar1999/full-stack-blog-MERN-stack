@@ -1,8 +1,9 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --primary-color: #E27D5F;
+  --primary-color: #FE4F70;
   --secondary-color: #40B3A2;
   --background-color:#D2EFE1;
+  --dark-color: #203656;
   --white: #fff;
 
 }
@@ -15,9 +16,8 @@ html,body {
 }
 
 .center {
-  width: 86%;
+  width: 86%; 
   margin: auto;
-  background-color: tomato;
 }
 
 .primary-color {
@@ -37,6 +37,47 @@ h1,h2,h3,h4,h5,p {
   padding: 0;
 }
 
-.Link{
+.link{
   all: unset;
+}
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+/* Container */
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.containerLeft {
+  flex: 3;
+  border: 1px solid lightgray;;
+}
+
+.containerRight {
+  flex: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px 30px;
+  border: 1px solid lightgray;
+}
+
+.actionButton {
+  color: white;
+  background-color: var(--primary-color);
+  padding: 15px 30px;
+  border: none;
+  font-size: 16px;
+  border-radius: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+.actionButton:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color);
 }
