@@ -1,0 +1,44 @@
+.hero {
+    height: 70vh;
+    max-width: 95%;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 99, 71, 0.7);
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.heroImage {
+    width: 100%;
+    height: 100%;
+}
+
+.heroLeft {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 50px;
+}
+.heroRight{
+    flex: 1.3;
+}
+
+.heroTitle {
+    margin: 20px 0 30px 0;
+    font-size: 40px;
+    color: #3E3E3E;
+}
+
+.heroSubtitle {
+    font-size: 22px;
+    color: #222222;
+}
+
+.heroParagraph {
+    color:darkslategray;
+    line-height: 1.7;
+}

@@ -1,0 +1,49 @@
+.latest {
+    max-width: 95%;
+    margin: auto;
+}
+
+.postItems {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.postItem {
+    display: flex;
+    gap: 30px;
+    height: 35vh;
+    overflow: hidden;
+}
+
+.postImage {
+    width: 100%;
+    height: 100%;
+}
+
+.postLeft {
+    flex: 0.7;
+}
+
+.postRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.postTitle {
+    font-size: 22px;
+}
+
+.postInfo {
+    color: gray;
+    display: flex;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.postDescription {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

@@ -1,0 +1,13 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.leftContent {
+    flex: 3;
+}
+
+.rightContent {
+    flex: 1;
+}
