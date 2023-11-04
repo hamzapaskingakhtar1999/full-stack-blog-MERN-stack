@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./allpost.module.css";
 
@@ -7,7 +7,22 @@ import { BsSearch } from "react-icons/bs";
 import SidebarBlogs from "../sidebar/sidebar-blogs/SidebarBlogs";
 import SidebarAbout from "../sidebar/sidebar-about/SidebarAbout";
 
+import { useBlogContext } from "../../hooks/useBlogContext";
+
 const AllPost = () => {
+  const { blogs, dispatch } = useBlogContext();
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const response = await fetch("/api/blogs");
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({ type: "SET_BLOGS", payload: json });
+      }
+    };
+    fetchBlogs();
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.allPost}>
@@ -47,102 +62,30 @@ const AllPost = () => {
           </div>
         </div>
         <div className={styles.posts}>
-          <div className={styles.post}>
-            <div className={styles.postImageContainer}>
-              <img
-                src="https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/drop-the-label-movement-608463-unsplash-325x233.jpg"
-                className={styles.postImage}
-              />
-            </div>
-            <div className={styles.postTexts}>
-              <div className={styles.userDetails}>
-                <p className={styles.name}>Katen Doe</p>
-                <h3 style={{ color: "tomato" }}>-</h3>
-                <p className={styles.date}>October 29, 2023</p>
+          {/* THIS IS FROM DATABASE */}
+
+          {blogs &&
+            blogs.map((item) => (
+              <div className={styles.post}>
+                <div className={styles.postImageContainer}>
+                  <img
+                    src="https://imgv3.fotor.com/images/slider-image/A-clear-image-of-a-woman-wearing-red-sharpened-by-Fotors-image-sharpener.jpg"
+                    className={styles.postImage}
+                  />
+                </div>
+                <div className={styles.postTexts}>
+                  <div className={styles.userDetails}>
+                    <p className={styles.name}>John Doe</p>
+                    <h3 style={{ color: "tomato" }}>-</h3>
+                    <p className={styles.date}>October 29, 2023</p>
+                  </div>
+                  <div className={styles.blogDetails}>
+                    <h3 className={styles.blogTitle}>{item.title}</h3>
+                    <p className={styles.blogDescription}>{item.description}</p>
+                  </div>
+                </div>
               </div>
-              <div className={styles.blogDetails}>
-                <h3 className={styles.blogTitle}>
-                  Facts About Business That Will Help You Success
-                </h3>
-                <p className={styles.blogDescription}>
-                  The European languages are members of the same family. Their
-                  separate existence is a myth. For science, music, sport, etc,…
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.post}>
-            <div className={styles.postImageContainer}>
-              <img
-                src="https://themeger.shop/wordpress/katen/wp-content/uploads/2022/08/drop-the-label-movement-608463-unsplash-325x233.jpg"
-                className={styles.postImage}
-              />
-            </div>
-            <div className={styles.postTexts}>
-              <div className={styles.userDetails}>
-                <p className={styles.name}>Katen Doe</p>
-                <h3 style={{ color: "tomato" }}>-</h3>
-                <p className={styles.date}>October 29, 2023</p>
-              </div>
-              <div className={styles.blogDetails}>
-                <h3 className={styles.blogTitle}>
-                  Facts About Business That Will Help You Success
-                </h3>
-                <p className={styles.blogDescription}>
-                  The European languages are members of the same family. Their
-                  separate existence is a myth. For science, music, sport, etc,…
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.post}>
-            <div className={styles.postImageContainer}>
-              <img
-                src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDExfHx8ZW58MHx8fHx8&w=1000&q=80"
-                className={styles.postImage}
-              />
-            </div>
-            <div className={styles.postTexts}>
-              <div className={styles.userDetails}>
-                <p className={styles.name}>Katen Doe</p>
-                <h3 style={{ color: "tomato" }}>-</h3>
-                <p className={styles.date}>October 29, 2023</p>
-              </div>
-              <div className={styles.blogDetails}>
-                <h3 className={styles.blogTitle}>
-                  Facts About Business That Will Help You Success
-                </h3>
-                <p className={styles.blogDescription}>
-                  The European languages are members of the same family. Their
-                  separate existence is a myth. For science, music, sport, etc,…
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className={styles.post}>
-            <div className={styles.postImageContainer}>
-              <img
-                src="https://imgv3.fotor.com/images/slider-image/A-clear-image-of-a-woman-wearing-red-sharpened-by-Fotors-image-sharpener.jpg"
-                className={styles.postImage}
-              />
-            </div>
-            <div className={styles.postTexts}>
-              <div className={styles.userDetails}>
-                <p className={styles.name}>Katen Doe</p>
-                <h3 style={{ color: "tomato" }}>-</h3>
-                <p className={styles.date}>October 29, 2023</p>
-              </div>
-              <div className={styles.blogDetails}>
-                <h3 className={styles.blogTitle}>
-                  Facts About Business That Will Help You Success
-                </h3>
-                <p className={styles.blogDescription}>
-                  The European languages are members of the same family. Their
-                  separate existence is a myth. For science, music, sport, etc,…
-                </p>
-              </div>
-            </div>
-          </div>
+            ))}
         </div>
       </div>
       <div className={styles.sidebar}>

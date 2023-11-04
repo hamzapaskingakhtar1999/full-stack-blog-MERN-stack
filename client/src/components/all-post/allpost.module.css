@@ -147,7 +147,8 @@
 .categoryText {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 10px;
     align-items: center;
     color: white;
     width: 100%;
@@ -165,5 +166,16 @@
 @media screen and (max-width:768px) {
     .post {
         width: 100%;
+        flex-direction: column;
+    }
+    .container {
+        flex-direction: column;
+    }
+    .searchButton {
+        font-size: 20px;
+    }
+    .categories {
+        flex-direction: column;
+        height: 30rem;
     }
 }

@@ -2,20 +2,21 @@
     display: flex;
     gap: 20px;
     max-width: 100%;
-  
 }
 
 .heroLeft {
     flex: 3;
     border-radius: 20px;
-    background-image: url("https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L2ZsNDQzNDE2ODYxNTUtaW1hZ2Uta3R4cmF6M20uanBn.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 70vh;
     display: flex;
     align-items: end;
-    
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+    background-color: red;
+}
+
+.heroImage {
+    flex: 1;
 }
 
 .heroLeftText {
@@ -23,6 +24,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px 30px;
+    position: absolute;
 }
 
 .heroTitle {
@@ -52,5 +54,15 @@
     .hero {
         flex-direction: column;
     }
+    .heroTitle {
+        font-size: 22px;
+    }
+    .heroImage {
+        height:20rem;
+    }
+    .heroRight {
+    }
+
+
     
 }

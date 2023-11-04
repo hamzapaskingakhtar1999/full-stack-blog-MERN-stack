@@ -1,12 +1,22 @@
-import express from "express";
-import cors from "cors";
-
+const express = require("express");
 const app = express();
 
-app.use(cors());
+require("dotenv").config();
 
-app.post("/register", (req, res) => {
-  res.json("Working");
-});
+/* We only want to listen when connected to MongoDB. */
+/* We do this later */
 
-app.listen(4000);
+app.use(express.json());
+
+const blogRoutes = require("./routes/BlogRoutes");
+const { default: mongoose } = require("mongoose");
+app.use("/api/blogs", blogRoutes);
+
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("Connected and Listening on PORT : ", process.env.PORT);
+    });
+  })
+  .catch((error) => console.log(error));
