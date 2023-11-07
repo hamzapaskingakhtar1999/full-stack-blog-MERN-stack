@@ -11,9 +11,7 @@ import {
 
 const Footer = () => {
   const date = new Date();
-  console.log(date);
   const year = date.getFullYear();
-  console.log(year);
   return (
     <div className="center">
       <hr style={{ marginTop: "50px" }} />

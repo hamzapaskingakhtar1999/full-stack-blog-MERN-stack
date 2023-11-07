@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const Blog = require("../models/BlogModels");
+const UserModels = require("../models/UserModels");
 
 /* Get all blogs */
 const getAllBlogs = async (req, res) => {
@@ -36,9 +37,15 @@ const getSingleBlog = async (req, res) => {
 /* Create a Blog */
 
 const createBlog = async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, userID, userName, category } = req.body;
   try {
-    const blog = await Blog.create({ title, description });
+    const blog = await Blog.create({
+      user: userID,
+      title,
+      description,
+      name: userName,
+      category,
+    });
     res.json(blog);
   } catch (error) {
     console.log(error.message);

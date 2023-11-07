@@ -2,24 +2,34 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./allpost.module.css";
 
+import { Link } from "react-router-dom";
+
 import { BsSearch } from "react-icons/bs";
 
 import SidebarBlogs from "../sidebar/sidebar-blogs/SidebarBlogs";
 import SidebarAbout from "../sidebar/sidebar-about/SidebarAbout";
 
-import { useBlogContext } from "../../hooks/useBlogContext";
+import { useGetUserID } from "../../hooks/useGetUserID";
+
+import { AiFillDelete } from "react-icons/ai";
 
 const AllPost = () => {
-  const { blogs, dispatch } = useBlogContext();
+  const [posts, setPosts] = useState(null);
+  const [search, setSearch] = useState("");
+  const user = useGetUserID();
+
+  /* Delete */
+  const handleDelete = async (item) => {
+    const response = await fetch("/api/blogs/" + item._id, {
+      method: "DELETE",
+    });
+  };
 
   useEffect(() => {
     const fetchBlogs = async () => {
       const response = await fetch("/api/blogs");
       const json = await response.json();
-
-      if (response.ok) {
-        dispatch({ type: "SET_BLOGS", payload: json });
-      }
+      setPosts(json);
     };
     fetchBlogs();
   }, []);
@@ -29,9 +39,20 @@ const AllPost = () => {
         {/*  */}
         <div className={styles.allPostTop}>
           <h1 className={styles.allPostTitle}>Posts</h1>
-          <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
-            <button className="actionButton">Create Post</button>
-            <BsSearch className={styles.searchButton} />
+          <div className={styles.createPost}>
+            <Link to="/create-post">
+              <button className="actionButton">Create Post</button>
+            </Link>
+
+            <div className={styles.search}>
+              <input
+                type="text"
+                placeholder="Search Blogs..."
+                className={styles.searchInput}
+                onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              />
+              <BsSearch className={styles.searchButton} />
+            </div>
           </div>
         </div>
 
@@ -64,28 +85,46 @@ const AllPost = () => {
         <div className={styles.posts}>
           {/* THIS IS FROM DATABASE */}
 
-          {blogs &&
-            blogs.map((item) => (
-              <div className={styles.post}>
-                <div className={styles.postImageContainer}>
-                  <img
-                    src="https://imgv3.fotor.com/images/slider-image/A-clear-image-of-a-woman-wearing-red-sharpened-by-Fotors-image-sharpener.jpg"
-                    className={styles.postImage}
-                  />
+          {posts &&
+            posts
+              .filter((item) => item.title.toLowerCase().includes(search))
+              .map((item) => (
+                <div className={styles.post}>
+                  <Link to={`/${item._id}`}>
+                    <div className={styles.postImageContainer}>
+                      <p className={styles.categoryName}>{item.category}</p>
+                      <img
+                        src="https://imgv3.fotor.com/images/slider-image/A-clear-image-of-a-woman-wearing-red-sharpened-by-Fotors-image-sharpener.jpg"
+                        className={styles.postImage}
+                      />
+                    </div>
+                    <div className={styles.postTexts}>
+                      <div className={styles.userDetails}>
+                        <p className={styles.name}>{item.name}</p>
+                        <h3 style={{ color: "tomato" }}>-</h3>
+                        <p className={styles.date}>
+                          {item.createdAt.split("T")[0]}
+                        </p>
+                        <h3 style={{ color: "tomato" }}>-</h3>
+                        {user === item.user ? (
+                          <AiFillDelete
+                            onClick={() => handleDelete(item)}
+                            className={styles.deleteIcon}
+                          />
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div className={styles.blogDetails}>
+                        <h3 className={styles.blogTitle}>{item.title}</h3>
+                        <p className={styles.blogDescription}>
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-                <div className={styles.postTexts}>
-                  <div className={styles.userDetails}>
-                    <p className={styles.name}>John Doe</p>
-                    <h3 style={{ color: "tomato" }}>-</h3>
-                    <p className={styles.date}>October 29, 2023</p>
-                  </div>
-                  <div className={styles.blogDetails}>
-                    <h3 className={styles.blogTitle}>{item.title}</h3>
-                    <p className={styles.blogDescription}>{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))}
         </div>
       </div>
       <div className={styles.sidebar}>

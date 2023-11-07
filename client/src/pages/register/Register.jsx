@@ -5,20 +5,22 @@ import styles from "./register.module.css";
 import register from "../../assets/login.svg";
 import { Link, useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:4000/register", {
-      method: "POST",
-      body: JSON.stringify({ name, email, password }),
-      headers: { "Content-Type": "application/json" },
+
+    const res = await axios.post("/api/register", {
+      name,
+      email,
+      password,
     });
+    console.log(res.data);
     /*   navigate("/"); */
   };
 

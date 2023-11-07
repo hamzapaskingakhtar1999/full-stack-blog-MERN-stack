@@ -43,6 +43,7 @@
 }
 .userDetails {
     display: flex;
+    justify-content: space-between;
     gap: 10px;
     align-items: center;
 }
@@ -57,6 +58,14 @@
     gap: 10px;
 }
 
+.deleteIcon {
+    font-size: 28px;
+    color: var(--secondary-color);
+}
+.deleteIcon:hover {
+    color: red;
+    cursor: pointer;
+}
 
 
 .name,.date {
@@ -92,12 +101,7 @@
 }
 
 .searchButton {
-    font-size: 32px;
-}
-
-.searchButton:hover {
-    cursor: pointer;
-    color: var(--primary-color);
+    font-size: 24px;
 }
 
 .categories {
@@ -106,6 +110,15 @@
     margin: 10px 0;
     gap: 30px;
     height: 80px;
+}
+
+.categoryName {
+    position: absolute;
+    padding: 8px 12px;
+    background-color: tomato;
+    color: white;
+    border-radius: 0 0 15px 0;
+    overflow: hidden;
 }
 
 .all,.technology,.food,.travel {
@@ -161,6 +174,33 @@
 
 }
 
+.search {
+    padding: 5px 10px 5px 0;
+    border: 1px solid var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.searchInput {
+    border: none;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+.searchInput:active,.searchInput:focus {
+    border: none;
+    outline:none;
+}
+
+.createPost {
+    display:flex;
+    align-items: center;
+    gap: 20px;
+}
+
 /* Media Queries */
 
 @media screen and (max-width:768px) {
@@ -177,5 +217,8 @@
     .categories {
         flex-direction: column;
         height: 30rem;
+    }
+    .allPostTop {
+        flex-direction: column;
     }
 }

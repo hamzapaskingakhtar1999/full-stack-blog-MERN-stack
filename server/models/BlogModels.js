@@ -6,11 +6,25 @@ const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
+    },
+
     title: {
       type: String,
       required: true,
     },
     description: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    category: {
       type: String,
       required: true,
     },

@@ -1,0 +1,12 @@
+
+
+.authorInfo {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.postImage {
+    width: 100%;
+    height: 50vh;
+}

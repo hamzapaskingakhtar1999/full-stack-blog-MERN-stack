@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import styles from "./login.module.css";
 
 import login from "../../assets/login.svg";
 
+import axios from "axios";
+
+import { useCookies } from "react-cookie";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [nameCookies, setNameCookies] = useCookies(["name_cookies"]);
+
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    navigate("/");
+    try {
+      const res = await axios.post("/api/login", { email, password });
+      setCookies("access_token", res.data.token);
+      setNameCookies("name_cookies", res.data.name);
+      window.localStorage.setItem("userID", res.data.userID);
+      window.localStorage.setItem("userName", res.data.name);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

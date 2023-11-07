@@ -3,15 +3,19 @@ const app = express();
 
 require("dotenv").config();
 
-/* We only want to listen when connected to MongoDB. */
-/* We do this later */
-
 app.use(express.json());
 
+/* Routes */
 const blogRoutes = require("./routes/BlogRoutes");
-const { default: mongoose } = require("mongoose");
-app.use("/api/blogs", blogRoutes);
+const authenticationRoutes = require("./routes/AuthenticationRoutes");
 
+const { default: mongoose } = require("mongoose");
+
+/* Routes */
+app.use("/api/blogs", blogRoutes);
+app.use("/api/", authenticationRoutes);
+
+/* We only want to listen when connected to MongoDB. */
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {

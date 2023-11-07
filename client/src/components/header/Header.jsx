@@ -2,13 +2,31 @@ import React, { useState } from "react";
 
 import styles from "./header.module.css";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsPersonCircle } from "react-icons/bs";
 import { AiOutlineMenuFold, AiOutlineClose } from "react-icons/ai";
+
+import { useGetUserName } from "../../hooks/useGetUserName";
+
+import { useCookies } from "react-cookie";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [nameCookies, setNameCookies] = useCookies(["name_cookies"]);
+
+  const name = useGetUserName();
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    setCookies("access_token", "");
+    window.localStorage.removeItem("userID");
+    setNameCookies("name_cookies", "");
+    window.localStorage.removeItem("userName");
+    navigate("/login");
+  };
   return (
     <div className="center">
       <div className={styles.header}>
@@ -19,17 +37,33 @@ const Header = () => {
         </Link>
 
         <div className={styles.right}>
-          <Link to="/register">
-            <div className={styles.navigationLink}>
-              <p>Register</p>
-            </div>
-          </Link>
+          {!cookies.access_token ? (
+            <>
+              <Link to="/register">
+                <div className={styles.navigationLink}>
+                  <p>Register</p>
+                </div>
+              </Link>
 
-          <Link to="/login">
-            <div className={styles.navigationLink}>
-              <p>Login</p>
-            </div>
-          </Link>
+              <Link to="/login">
+                <div className={styles.navigationLink}>
+                  <p>Login</p>
+                </div>
+              </Link>
+            </>
+          ) : (
+            <>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <BsPersonCircle size={30} color="tomato" />
+                <p>{name}</p>
+              </div>
+              <button onClick={logout} className="actionButton">
+                Sign Out
+              </button>
+            </>
+          )}
 
           <div className={styles.iconContainer}>
             <BsSearch className={styles.headerButton} />

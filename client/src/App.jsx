@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import CreatePost from "./pages/create-post/CreatePost";
+import SinglePost from "./components/single-post/SinglePost";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/:id" element={<SinglePost />} />
       </Routes>
       <Footer />
     </Router>
