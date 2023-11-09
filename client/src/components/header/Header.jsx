@@ -65,9 +65,9 @@ const Header = () => {
             </>
           )}
 
-          <div className={styles.iconContainer}>
+          {/*       <div className={styles.iconContainer}>
             <BsSearch className={styles.headerButton} />
-          </div>
+          </div> */}
           <div
             className={`${styles.iconContainer} ${styles.hide}`}
             onClick={() => setIsOpen(!isOpen)}

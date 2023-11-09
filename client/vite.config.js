@@ -12,7 +12,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
-      "/api": {
+      "/api/": {
+        target: "http://localhost:4000",
+        changeOrigin: true,
+        secure: false,
+      },
+      "/api/comments": {
         target: "http://localhost:4000",
         changeOrigin: true,
         secure: false,

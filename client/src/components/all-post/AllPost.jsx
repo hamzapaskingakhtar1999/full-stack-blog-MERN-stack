@@ -11,19 +11,12 @@ import SidebarAbout from "../sidebar/sidebar-about/SidebarAbout";
 
 import { useGetUserID } from "../../hooks/useGetUserID";
 
-import { AiFillDelete } from "react-icons/ai";
+import parse from "html-react-parser";
 
 const AllPost = () => {
   const [posts, setPosts] = useState(null);
   const [search, setSearch] = useState("");
   const user = useGetUserID();
-
-  /* Delete */
-  const handleDelete = async (item) => {
-    const response = await fetch("/api/blogs/" + item._id, {
-      method: "DELETE",
-    });
-  };
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -60,25 +53,25 @@ const AllPost = () => {
           <div className={styles.all}>
             <div className={styles.categoryText}>
               <h3>All Posts</h3>
-              <h3 className={styles.postAmount}>4</h3>
+              {/*    <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
           <div className={styles.technology}>
             <div className={styles.categoryText}>
               <h3>Technology</h3>
-              <h3 className={styles.postAmount}>4</h3>
+              {/*         <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
           <div className={styles.food}>
             <div className={styles.categoryText}>
               <h3>Food</h3>
-              <h3 className={styles.postAmount}>4</h3>
+              {/*         <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
           <div className={styles.travel}>
             <div className={styles.categoryText}>
               <h3>Travel</h3>
-              <h3 className={styles.postAmount}>4</h3>
+              {/*            <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
         </div>
@@ -105,20 +98,13 @@ const AllPost = () => {
                         <p className={styles.date}>
                           {item.createdAt.split("T")[0]}
                         </p>
-                        <h3 style={{ color: "tomato" }}>-</h3>
-                        {user === item.user ? (
-                          <AiFillDelete
-                            onClick={() => handleDelete(item)}
-                            className={styles.deleteIcon}
-                          />
-                        ) : (
-                          ""
-                        )}
                       </div>
                       <div className={styles.blogDetails}>
                         <h3 className={styles.blogTitle}>{item.title}</h3>
                         <p className={styles.blogDescription}>
-                          {item.description}
+                          {parse(`
+                            ${item.description}
+                          `)}
                         </p>
                       </div>
                     </div>

@@ -1,0 +1,27 @@
+.blogTitle {
+    padding: 10px 15px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 15px 0;
+}
+
+.quillContainer {
+    height: calc(100% - 80px); 
+}
+
+.descriptionContainer {
+    height: 20rem;
+}
+
+.select {
+    padding: 10px 10px;
+    border: none;
+    outline: none;
+    background-color: lightcoral;
+    color: white;
+}
+
+.select:hover {
+    background-color: tomato;
+    cursor: pointer;
+}

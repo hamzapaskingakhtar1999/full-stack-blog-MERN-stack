@@ -1,6 +1,5 @@
 const { default: mongoose } = require("mongoose");
 const Blog = require("../models/BlogModels");
-const UserModels = require("../models/UserModels");
 
 /* Get all blogs */
 const getAllBlogs = async (req, res) => {

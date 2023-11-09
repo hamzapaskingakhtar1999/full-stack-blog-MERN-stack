@@ -28,9 +28,12 @@
 .post {
     flex-direction: column;
     width: 47%;
+/*     height: 25rem; */
+/*     overflow: hidden; */
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-width: 0;
 }
 .postImageContainer {
     height: 15rem;
@@ -46,6 +49,7 @@
     justify-content: space-between;
     gap: 10px;
     align-items: center;
+    margin: 10px 0;
 }
 .postImage {
     border-radius: 10px;
@@ -58,14 +62,25 @@
     gap: 10px;
 }
 
-.deleteIcon {
-    font-size: 28px;
-    color: var(--secondary-color);
+.blogTitle {
+    display: block;/* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3em;
+    line-height: 1.5em;
 }
-.deleteIcon:hover {
-    color: red;
-    cursor: pointer;
+
+.blogDescription {
+    display: block;/* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 4.5em;
+    line-height: 1.5em;
 }
+
+
 
 
 .name,.date {

@@ -8,12 +8,14 @@ app.use(express.json());
 /* Routes */
 const blogRoutes = require("./routes/BlogRoutes");
 const authenticationRoutes = require("./routes/AuthenticationRoutes");
+const commentRoutes = require("./routes/CommentRoutes");
 
 const { default: mongoose } = require("mongoose");
 
 /* Routes */
 app.use("/api/blogs", blogRoutes);
 app.use("/api/", authenticationRoutes);
+app.use("/api/comments", commentRoutes);
 
 /* We only want to listen when connected to MongoDB. */
 mongoose

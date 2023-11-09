@@ -16,19 +16,16 @@ const createUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   /* Checks */
+  // 1. User already exists
+  const userExists = await User.findOne({ email });
 
-  // 1. Fields not filled
-
-  if (!name || !email || !password) {
-    return res.status(400).json({ Message: "Fill all fields" });
+  if (userExists) {
+    return res.json({
+      message: "User already exists. Try logging in instead.",
+    });
   }
 
   try {
-    const userExists = await User.findOne({ email });
-    // 2. User already exists
-    if (userExists) {
-      res.status(400).json({ Message: "User already exists" });
-    }
     const user = await User.create({
       name,
       email,
@@ -36,20 +33,22 @@ const createUser = async (req, res) => {
     });
 
     if (user) {
-      res.status(201).json({
+      return res.status(201).json({
         _id: user.id,
         name: user.name,
         email: user.email,
+        message: "User Created",
       });
     }
   } catch (error) {
-    res.status(400).json({ Message: "Some error during creation of account" });
+    res.status(400).json({ message: "Some error during creation of account" });
   }
 };
 
 // @desc Authenticate User
 // @route POST /api/login
 // @access Public
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -67,9 +66,17 @@ const loginUser = async (req, res) => {
 
     /* JWT */
     const token = jwt.sign({ id: user._id }, "secret");
-    res.json({ token, userID: user._id, email: user.email, name: user.name });
+    res.json({
+      token,
+      userID: user._id,
+      email: user.email,
+      name: user.name,
+      message: "",
+    });
   } catch (error) {
-    res.status(400).json({ Message: "Invalid Password" });
+    res
+      .status(400)
+      .json({ message: "Problem Logging in. Please try again later" });
   }
 };
 

@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 
+import styles from "./createpost.module.css";
+
 import { useGetUserID } from "../../hooks/useGetUserID";
 import { useGetUserName } from "../../hooks/useGetUserName";
+
+import { useCookies } from "react-cookie";
+
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import Login from "../login/Login";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -9,8 +17,12 @@ const CreatePost = () => {
   const [error, setError] = useState(null);
   const [category, setCategory] = useState("");
 
+  const [value, setValue] = useState("");
+
   const userID = useGetUserID();
   const userName = useGetUserName();
+
+  const [cookies, setCookies] = useCookies(["access_token"]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,36 +51,63 @@ const CreatePost = () => {
 
   return (
     <div>
-      <h1>Create Post</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input
-          type="text"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-          required
-        />
-        <label>Description</label>
-        <input
-          type="text"
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-          required
-        />
-        <select
-          onChange={(event) => setCategory(event.target.value)}
-          defaultValue=""
-          required
-        >
-          <option value="" disabled selected hidden>
-            Select Category
-          </option>
-          <option value="Technology">Technology</option>
-          <option value="Food">Food</option>
-          <option value="Travel">Travel</option>
-        </select>
-        <button type="submit">Submit</button>
-      </form>
+      {!cookies.access_token ? (
+        <Login />
+      ) : (
+        <div className="center">
+          <h1
+            style={{
+              textAlign: "center",
+              margin: "20px 0",
+              color: "tomato",
+            }}
+          >
+            Create Post
+          </h1>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+              required
+              className={styles.blogTitle}
+              placeholder="Title of Blog..."
+            />
+            <div className={styles.descriptionContainer}>
+              <ReactQuill
+                theme="snow"
+                value={description}
+                onChange={setDescription}
+                className={styles.quillContainer}
+              />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <select
+                onChange={(event) => setCategory(event.target.value)}
+                defaultValue=""
+                required
+                className={styles.select}
+              >
+                <option value="" disabled selected hidden>
+                  Select Category
+                </option>
+                <option value="Technology" className={styles.option}>
+                  Technology
+                </option>
+                <option value="Food" className={styles.option}>
+                  Food
+                </option>
+                <option value="Travel" className={styles.option}>
+                  Travel
+                </option>
+              </select>
+              <button type="submit" className="actionButton">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

@@ -23,11 +23,14 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post("/api/login", { email, password });
-      setCookies("access_token", res.data.token);
-      setNameCookies("name_cookies", res.data.name);
-      window.localStorage.setItem("userID", res.data.userID);
-      window.localStorage.setItem("userName", res.data.name);
-      navigate("/");
+
+      if (res.data.message == "") {
+        navigate("/");
+        setCookies("access_token", res.data.token);
+        setNameCookies("name_cookies", res.data.name);
+        window.localStorage.setItem("userID", res.data.userID);
+        window.localStorage.setItem("userName", res.data.name);
+      } else alert(res.data.message);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +50,7 @@ const Login = () => {
           </div>
         </div>
         <div className={styles.loginRight}>
-          <div className={styles.topFormNavigation}>
+          {/*      <div className={styles.topFormNavigation}>
             <Link className="Link" to="/login">
               <div className={styles.topFormNavigationItem}>
                 <p>Login</p>
@@ -59,7 +62,7 @@ const Login = () => {
                 <p>Register</p>
               </div>
             </Link>
-          </div>
+          </div> */}
           <div className={styles.formContainer}>
             <h1 className={styles.formTitle}>Login</h1>
 

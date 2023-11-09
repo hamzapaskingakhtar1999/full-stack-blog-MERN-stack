@@ -10,3 +10,12 @@
     width: 100%;
     height: 50vh;
 }
+
+.deleteIcon {
+    font-size: 28px;
+    color: var(--secondary-color);
+}
+.deleteIcon:hover {
+    color: red;
+    cursor: pointer;
+}

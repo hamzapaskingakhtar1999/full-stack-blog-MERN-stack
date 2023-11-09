@@ -12,16 +12,20 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const res = await axios.post("/api/register", {
-      name,
-      email,
-      password,
-    });
-    console.log(res.data);
-    /*   navigate("/"); */
+    try {
+      const res = await axios.post("/api/register", {
+        name,
+        email,
+        password,
+      });
+      alert(res.data.message);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -38,7 +42,7 @@ const Register = () => {
           </div>
         </div>
         <div className={styles.registerRight}>
-          <div className={styles.topFormNavigation}>
+          {/*  <div className={styles.topFormNavigation}>
             <Link className="Link" to="/login">
               <div className={styles.topFormNavigationItem}>
                 <p>Login</p>
@@ -50,7 +54,7 @@ const Register = () => {
                 <p>Register</p>
               </div>
             </Link>
-          </div>
+          </div> */}
           <div className={styles.formContainer}>
             <h1 className={styles.formTitle}>Register</h1>
 
@@ -62,6 +66,7 @@ const Register = () => {
                 placeholder="Enter Your Full Name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                required
               />
               <label>Email</label>
               <input
@@ -70,6 +75,7 @@ const Register = () => {
                 placeholder="Enter Your Email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
+                required
               />
               <label>Password</label>
               <input
@@ -78,6 +84,7 @@ const Register = () => {
                 placeholder="Enter Your Password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
+                required
               />
               <button className={styles.registerButton} type="submit">
                 Register

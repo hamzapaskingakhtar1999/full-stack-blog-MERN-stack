@@ -1,0 +1,43 @@
+
+
+.commentInputContainer {
+    border: 1px solid gray;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.commentDisplay {
+    margin-top: 20px;
+    border: 1px solid gray;
+    padding: 15px 15px;
+    border-radius: 10px;
+}
+
+.commentDisplayItem {
+    margin-bottom: 20px;
+}
+
+.commentInput {
+    width: 100%;
+    padding: 15px 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    
+}
+
+.commentInputBottom {
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.commentDisplayBottom {
+    display: flex;
+    flex-direction:row;
+    gap:10px;
+    align-items: center;
+    justify-content:end;
+}
