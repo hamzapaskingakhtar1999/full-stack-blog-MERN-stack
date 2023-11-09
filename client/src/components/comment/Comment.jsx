@@ -6,23 +6,30 @@ import { useGetUserName } from "../../hooks/useGetUserName";
 
 import axios from "axios";
 
+import { useParams } from "react-router-dom";
+
 const Comment = () => {
   const name = useGetUserName();
 
   const [comment, setComment] = useState("");
   const [allComment, setAllComment] = useState();
 
+  const params = useParams();
+  const blogID = params.id;
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
     /* POST COMMENT */
-    const response = await axios.post("/api/comments", { comment, name });
+    const response = await axios.post("/api/comments", {
+      comment,
+      name,
+      blogID,
+    });
     setComment("");
   };
 
   useEffect(() => {
     const getComments = async () => {
       const response = await axios.get("/api/comments");
-      console.log(response.data, "Comments");
       setAllComment(response.data);
     };
     getComments();
@@ -31,6 +38,7 @@ const Comment = () => {
   return (
     <div className={styles.comment}>
       <div className={styles.commentInputContainer}>
+        <h1 style={{ color: "#40B3A2" }}>Comments</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -49,18 +57,23 @@ const Comment = () => {
           </div>
         </form>
       </div>
-      <div className={styles.commentDisplay}>
-        {allComment &&
-          allComment.map((item) => (
-            <div className={styles.commentDisplayItem}>
-              <p>{item.comment}</p>
-              <div className={styles.commentDisplayBottom}>
-                <p>- {item.name}</p>
+      {allComment ? (
+        <div className={styles.commentDisplay}>
+          {allComment
+            .filter((item) => item.blogID === blogID)
+            .map((item) => (
+              <div className={styles.commentDisplayItem}>
+                <p>{item.comment}</p>
+                <div className={styles.commentDisplayBottom}>
+                  <p>- {item.name}</p>
+                </div>
+                <hr />
               </div>
-              <hr />
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

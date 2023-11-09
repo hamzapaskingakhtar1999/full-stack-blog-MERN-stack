@@ -9,16 +9,21 @@ import { AiFillDelete } from "react-icons/ai";
 import ReactQuill from "react-quill";
 import Comment from "../comment/Comment";
 
+import { useNavigate } from "react-router-dom";
+
 const SinglePost = () => {
   const [post, setPost] = useState(null);
   let params = useParams();
   const user = useGetUserID();
+
+  const navigate = useNavigate();
 
   /* Delete */
   const handleDelete = async (item) => {
     const response = await fetch("/api/blogs/" + item._id, {
       method: "DELETE",
     });
+    navigate("/");
   };
 
   useEffect(() => {
@@ -35,7 +40,7 @@ const SinglePost = () => {
         <div className={styles.singlePost}>
           <div className={styles.postImage}>
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn7bVBBx_reF-Ql4dPp1W8eluTMkedxPSAon1ExCv3gU3Sy0I_E0QXMV-rVQSBZHsY-Wk&usqp=CAU"
+              src={post.imageUrl}
               style={{ height: "100%", width: "100%" }}
             />
           </div>

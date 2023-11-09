@@ -1,11 +1,10 @@
 const Comment = require("../models/CommentModel");
 
 const createComment = async (req, res) => {
-  const { comment, name } = req.body;
+  const { comment, name, blogID } = req.body;
   try {
-    const response = await Comment.create({ comment, name });
+    const response = await Comment.create({ comment, name, blogID });
     res.json(response);
-    console.log(response);
   } catch (error) {
     console.log(error);
   }

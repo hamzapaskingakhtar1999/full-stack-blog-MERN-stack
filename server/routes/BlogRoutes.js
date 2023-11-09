@@ -16,7 +16,6 @@ router.get("/", getAllBlogs);
 /* Get a single blog */
 router.get("/:id", getSingleBlog);
 
-/* Post a blog */
 router.post("/", createBlog);
 
 /* Update a blog */

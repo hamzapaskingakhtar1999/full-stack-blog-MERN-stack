@@ -36,7 +36,7 @@ const getSingleBlog = async (req, res) => {
 /* Create a Blog */
 
 const createBlog = async (req, res) => {
-  const { title, description, userID, userName, category } = req.body;
+  const { title, description, userID, userName, category, url } = req.body;
   try {
     const blog = await Blog.create({
       user: userID,
@@ -44,6 +44,7 @@ const createBlog = async (req, res) => {
       description,
       name: userName,
       category,
+      imageUrl: url,
     });
     res.json(blog);
   } catch (error) {

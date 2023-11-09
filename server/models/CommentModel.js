@@ -10,6 +10,9 @@ const CommentSchema = new Schema(
     name: {
       type: String,
     },
+    blogID: {
+      type: String,
+    },
   },
   {
     timestamps: true,

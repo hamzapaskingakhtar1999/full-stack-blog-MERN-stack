@@ -25,3 +25,8 @@
     background-color: tomato;
     cursor: pointer;
 }
+
+.hide {
+    position: absolute;
+    opacity: 0;
+}

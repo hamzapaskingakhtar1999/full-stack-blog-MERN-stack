@@ -12,9 +12,11 @@ const commentRoutes = require("./routes/CommentRoutes");
 
 const { default: mongoose } = require("mongoose");
 
-/* Routes */
+/* Blog Routes */
 app.use("/api/blogs", blogRoutes);
+/* Authentication Routes */
 app.use("/api/", authenticationRoutes);
+/* Comment Routes */
 app.use("/api/comments", commentRoutes);
 
 /* We only want to listen when connected to MongoDB. */

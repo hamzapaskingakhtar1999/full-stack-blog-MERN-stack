@@ -16,6 +16,7 @@ import parse from "html-react-parser";
 const AllPost = () => {
   const [posts, setPosts] = useState(null);
   const [search, setSearch] = useState("");
+  const [categoryItem, setCategoryItem] = useState("");
   const user = useGetUserID();
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const AllPost = () => {
     };
     fetchBlogs();
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.allPost}>
@@ -34,7 +36,7 @@ const AllPost = () => {
           <h1 className={styles.allPostTitle}>Posts</h1>
           <div className={styles.createPost}>
             <Link to="/create-post">
-              <button className="actionButton">Create Post</button>
+              <button className="actionButton">Write a Blog</button>
             </Link>
 
             <div className={styles.search}>
@@ -50,25 +52,34 @@ const AllPost = () => {
         </div>
 
         <div className={styles.categories}>
-          <div className={styles.all}>
+          <div className={styles.all} onClick={() => setCategoryItem("")}>
             <div className={styles.categoryText}>
               <h3>All Posts</h3>
               {/*    <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
-          <div className={styles.technology}>
+          <div
+            className={styles.technology}
+            onClick={() => setCategoryItem("Technology")}
+          >
             <div className={styles.categoryText}>
               <h3>Technology</h3>
               {/*         <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
           <div className={styles.food}>
-            <div className={styles.categoryText}>
+            <div
+              className={styles.categoryText}
+              onClick={() => setCategoryItem("Food")}
+            >
               <h3>Food</h3>
               {/*         <h3 className={styles.postAmount}>4</h3> */}
             </div>
           </div>
-          <div className={styles.travel}>
+          <div
+            className={styles.travel}
+            onClick={() => setCategoryItem("Travel")}
+          >
             <div className={styles.categoryText}>
               <h3>Travel</h3>
               {/*            <h3 className={styles.postAmount}>4</h3> */}
@@ -80,16 +91,24 @@ const AllPost = () => {
 
           {posts &&
             posts
-              .filter((item) => item.title.toLowerCase().includes(search))
+              .filter(
+                (item) =>
+                  item.category.includes(categoryItem) &&
+                  item.title.toLowerCase().includes(search)
+              )
               .map((item) => (
                 <div className={styles.post}>
                   <Link to={`/${item._id}`}>
                     <div className={styles.postImageContainer}>
                       <p className={styles.categoryName}>{item.category}</p>
-                      <img
-                        src="https://imgv3.fotor.com/images/slider-image/A-clear-image-of-a-woman-wearing-red-sharpened-by-Fotors-image-sharpener.jpg"
-                        className={styles.postImage}
-                      />
+                      {item.imageUrl ? (
+                        <img src={item.imageUrl} className={styles.postImage} />
+                      ) : (
+                        <img
+                          src="https://imgv3.fotor.com/images/slider-image/A-clear-image-of-a-woman-wearing-red-sharpened-by-Fotors-image-sharpener.jpg"
+                          className={styles.postImage}
+                        />
+                      )}
                     </div>
                     <div className={styles.postTexts}>
                       <div className={styles.userDetails}>
