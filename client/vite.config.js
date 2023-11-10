@@ -8,17 +8,17 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api/blogs": {
-        target: "http://localhost:4000",
+        target: "https://full-stack-blog-mern-stack.vercel.app/",
         changeOrigin: true,
         secure: false,
       },
       "/api/": {
-        target: "http://localhost:4000",
+        target: "https://full-stack-blog-mern-stack.vercel.app/api",
         changeOrigin: true,
         secure: false,
       },
       "/api/comments": {
-        target: "http://localhost:4000",
+        target: "https://full-stack-blog-mern-stack.vercel.app/api",
         changeOrigin: true,
         secure: false,
       },
