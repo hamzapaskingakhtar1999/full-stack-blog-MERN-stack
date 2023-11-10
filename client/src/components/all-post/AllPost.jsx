@@ -11,6 +11,8 @@ import SidebarAbout from "../sidebar/sidebar-about/SidebarAbout";
 
 import { useGetUserID } from "../../hooks/useGetUserID";
 
+import axios from "axios";
+
 import parse from "html-react-parser";
 
 const AllPost = () => {
@@ -21,11 +23,10 @@ const AllPost = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch(
-        "https://full-stack-blog-mern-stack.vercel.app//api/blogs"
+      const response = await axios.get(
+        "https://full-stack-blog-mern-stack.vercel.app/api/blogs"
       );
-      const json = await response.json();
-      setPosts(json);
+      setPosts(response.data);
     };
     fetchBlogs();
   }, []);
