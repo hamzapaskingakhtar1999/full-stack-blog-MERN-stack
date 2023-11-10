@@ -19,11 +19,14 @@ const Comment = () => {
 
   const handleSubmit = async (e) => {
     /* POST COMMENT */
-    const response = await axios.post("/api/comments", {
-      comment,
-      name,
-      blogID,
-    });
+    const response = await axios.post(
+      "https://full-stack-blog-mern-stack.vercel.app/api/comments",
+      {
+        comment,
+        name,
+        blogID,
+      }
+    );
     setComment("");
   };
 
