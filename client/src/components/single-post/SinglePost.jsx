@@ -21,8 +21,7 @@ const SinglePost = () => {
   /* Delete */
   const handleDelete = async (item) => {
     const response = await fetch(
-      "full-stack-blog-mern-stack-cd4sa2mc5-hamzas-projects-fa219467.vercel.app/api/blogs/" +
-        item._id,
+      "https://full-stack-blog-mern-stack.vercel.app/api/blogs/" + item._id,
       {
         method: "DELETE",
       }
@@ -32,7 +31,9 @@ const SinglePost = () => {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await fetch(`/api/blogs/${params.id}`);
+      const response = await fetch(
+        `https://full-stack-blog-mern-stack.vercel.app/api/blogs/${params.id}`
+      );
       const json = await response.json();
       setPost(json);
     };
