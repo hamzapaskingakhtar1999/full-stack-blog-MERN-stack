@@ -82,7 +82,7 @@ const CreatePost = () => {
         }
       );
       console.log(response);
-      if (response.statusText !== "OK") {
+      if (response.statusText !== "OK" || response.statusText !== "") {
         alert("Some issue creating post. Try again later.");
       }
       if (response.statusText === "OK") {

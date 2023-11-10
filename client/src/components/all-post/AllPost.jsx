@@ -21,7 +21,9 @@ const AllPost = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch("/api/blogs");
+      const response = await fetch(
+        "https://full-stack-blog-mern-stack.vercel.app//api/blogs"
+      );
       const json = await response.json();
       setPosts(json);
     };
