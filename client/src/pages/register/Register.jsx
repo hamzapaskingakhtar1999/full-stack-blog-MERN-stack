@@ -17,11 +17,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/register", {
-        name,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://full-stack-blog-mern-stack.vercel.app/api/register",
+        {
+          name,
+          email,
+          password,
+        }
+      );
       alert(res.data.message);
     } catch (error) {
       console.log(error.message);

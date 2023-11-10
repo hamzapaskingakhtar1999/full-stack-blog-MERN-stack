@@ -22,7 +22,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/login", { email, password });
+      const res = await axios.post(
+        "https://full-stack-blog-mern-stack.vercel.app/api/login",
+        { email, password }
+      );
 
       if (res.data.message == "") {
         navigate("/");

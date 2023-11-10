@@ -70,14 +70,17 @@ const CreatePost = () => {
       return;
     }
     if (url !== "") {
-      const response = await axios.post("/api/blogs", {
-        title,
-        description,
-        userID,
-        userName,
-        category,
-        url,
-      });
+      const response = await axios.post(
+        "https://full-stack-blog-mern-stack.vercel.app/api/blogs",
+        {
+          title,
+          description,
+          userID,
+          userName,
+          category,
+          url,
+        }
+      );
       console.log(response);
       if (response.statusText !== "OK") {
         alert("Some issue creating post. Try again later.");
