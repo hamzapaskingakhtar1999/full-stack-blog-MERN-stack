@@ -20,9 +20,13 @@ const SinglePost = () => {
 
   /* Delete */
   const handleDelete = async (item) => {
-    const response = await fetch("/api/blogs/" + item._id, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      "full-stack-blog-mern-stack-cd4sa2mc5-hamzas-projects-fa219467.vercel.app/api/blogs/" +
+        item._id,
+      {
+        method: "DELETE",
+      }
+    );
     navigate("/");
   };
 
