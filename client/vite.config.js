@@ -13,12 +13,12 @@ export default defineConfig({
         secure: false,
       },
       "/api/": {
-        target: "https://full-stack-blog-mern-stack.vercel.app/api",
+        target: "https://full-stack-blog-mern-stack.vercel.app/",
         changeOrigin: true,
         secure: false,
       },
       "/api/comments": {
-        target: "https://full-stack-blog-mern-stack.vercel.app/api",
+        target: "https://full-stack-blog-mern-stack.vercel.app/",
         changeOrigin: true,
         secure: false,
       },
