@@ -28,11 +28,14 @@ const Comment = () => {
       }
     );
     setComment("");
+    console.log(response);
   };
 
   useEffect(() => {
     const getComments = async () => {
-      const response = await axios.get("/api/comments");
+      const response = await axios.get(
+        "https://full-stack-blog-mern-stack.vercel.app/api/comments"
+      );
       setAllComment(response.data);
     };
     getComments();

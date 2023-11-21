@@ -4,6 +4,7 @@ const createComment = async (req, res) => {
   const { comment, name, blogID } = req.body;
   try {
     const response = await Comment.create({ comment, name, blogID });
+    console.log(response);
     res.json(response);
   } catch (error) {
     console.log(error);
